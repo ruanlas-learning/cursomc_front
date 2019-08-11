@@ -38,11 +38,13 @@ export class HomePage {
     this.auth.authenticate(this.creds)
               .subscribe(
                 response => {
-                  console.log(response.headers.get('Authorization'));
+                  // console.log(response.headers.get('Authorization'));
+                  let authorizationValue = response.headers.get('Authorization');
+                  this.auth.successfulLogin(authorizationValue);
                   this.navCtrl.setRoot('CategoriasPage');
                 },
                 error => {
-                  
+
                 }
               );
     // this.navCtrl.setRoot('CategoriasPage');
