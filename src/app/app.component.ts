@@ -3,7 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
+// import { HomePage } from '../pages/home/home';
 
 @Component({
   templateUrl: 'app.html'
@@ -11,16 +11,20 @@ import { HomePage } from '../pages/home/home';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  // rootPage: any = HomePage;  //=> com a inclusão do @IonicPage() na Classe HomePage, podemos 
+  //                                  atribuir ao rootPage uma string com o nome da classe sem precisar importá-la e passar sua referência
+  rootPage: string = 'HomePage';
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: string}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage }
+      // { title: 'Home', component: HomePage } //=> podemos passar também a referência do 
+      //                                              component uma string com o nome da classe sem precisar importá-la
+      { title: 'Home', component: 'HomePage' }
     ];
 
   }
