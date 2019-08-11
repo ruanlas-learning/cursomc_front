@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 import { MenuController } from 'ionic-angular/components/app/menu-controller';
 import { CredenciaisDTO } from '../../models/credenciais.dto';
+import { AuthService } from '../../services/auth.service';
 // https://ionicframework.com/blog/navigating-lifecycle-events/
 
 @IonicPage()
@@ -16,7 +17,10 @@ export class HomePage {
     senha: ""
   };
 
-  constructor(public navCtrl: NavController, public menu: MenuController) {
+  constructor(
+    public navCtrl: NavController, 
+    public menu: MenuController,
+    public auth: AuthService) {
 
   }
 
@@ -30,7 +34,17 @@ export class HomePage {
 
   login() {
     // this.navCtrl.push('CategoriasPage');
-    console.log(this.creds);
-    this.navCtrl.setRoot('CategoriasPage');
+    // console.log(this.creds)
+    this.auth.authenticate(this.creds)
+              .subscribe(
+                response => {
+                  console.log(response.headers.get('Authorization'));
+                  this.navCtrl.setRoot('CategoriasPage');
+                },
+                error => {
+                  
+                }
+              );
+    // this.navCtrl.setRoot('CategoriasPage');
   }
 }
