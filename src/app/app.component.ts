@@ -21,10 +21,11 @@ export class MyApp {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
-    this.pages = [
+    this.pages = [ //=> itens do menu de navegação (toda tela que deverá estar no menu deve ser adicionada aqui)
       // { title: 'Home', component: HomePage } //=> podemos passar também a referência do 
       //                                              component uma string com o nome da classe sem precisar importá-la
-      { title: 'Home', component: 'HomePage' }
+      { title: 'Profile', component: 'ProfilePage' },
+      { title: 'Categorias', component: 'CategoriasPage' }
     ];
 
   }

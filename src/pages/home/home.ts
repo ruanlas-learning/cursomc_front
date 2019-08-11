@@ -5,6 +5,8 @@ import { CredenciaisDTO } from '../../models/credenciais.dto';
 import { AuthService } from '../../services/auth.service';
 // https://ionicframework.com/blog/navigating-lifecycle-events/
 
+// ionic generate page <NomeDaPagina>  ==> cria uma nova estrutura de página contendo o "controller"
+
 @IonicPage()
 @Component({
   selector: 'page-home',
