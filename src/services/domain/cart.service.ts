@@ -36,9 +36,58 @@ export class CartService {
                 }
             );
         }else{
-            cart.itens[position].quantidade += 1;
+            // cart.itens[position].quantidade += 1;
+            cart = this.increaseQuantity(produto);
         }
         this.storage.setCart(cart);
         return cart;
+    }
+
+    removeProduto(produto: ProdutoDTO) : Cart {
+        let cart = this.getCart();
+        let position = cart.itens.findIndex(
+            item => item.produto.id == produto.id
+        );
+        if (position != -1) {
+            cart.itens.splice(position, 1);
+        }
+        this.storage.setCart(cart);
+        return cart;
+    }
+
+    increaseQuantity(produto: ProdutoDTO) : Cart {
+        let cart = this.getCart();
+        let position = cart.itens.findIndex(
+            item => item.produto.id == produto.id
+        );
+        if (position != -1) {
+            cart.itens[position].quantidade++;
+        }
+        this.storage.setCart(cart);
+        return cart;
+    }
+
+    decreaseQuantity(produto: ProdutoDTO) : Cart {
+        let cart = this.getCart();
+        let position = cart.itens.findIndex(
+            item => item.produto.id == produto.id
+        );
+        if (position != -1) {
+            cart.itens[position].quantidade--;
+            if (cart.itens[position].quantidade < 1){
+                cart = this.removeProduto(produto);
+            }
+        }
+        this.storage.setCart(cart);
+        return cart;
+    }
+
+    total() : number {
+        let cart = this.getCart();
+        let sum = 0;
+        for (var i = 0; i < cart.itens.length; i++){
+            sum += cart.itens[i].produto.preco * cart.itens[i].quantidade;
+        }
+        return sum;
     }
 }
