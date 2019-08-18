@@ -31,6 +31,7 @@ export class MyApp {
       //                                              component uma string com o nome da classe sem precisar importá-la
       { title: 'Profile', component: 'ProfilePage' },
       { title: 'Categorias', component: 'CategoriasPage' },
+      { title: 'Carrinho', component: 'CartPage' },
       { title: 'Logout', component: '' }
     ];
 
